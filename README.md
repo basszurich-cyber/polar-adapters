@@ -1,22 +1,22 @@
-# Polar Adapters
+# Spaire Adapters
 
-This repository hosts a wide array of Polar adapters for your TypeScript framework. Our Adapters are built to make it as easy as possible to integrate Polar in your application.
+This repository hosts a wide array of Spaire adapters for your TypeScript framework. Our Adapters are built to make it as easy as possible to integrate Spaire in your application.
 
 ### Adapters
 
-- [BetterAuth](./packages/polar-betterauth)
-- [Supabase](./packages/polar-supabase/)
-- [Deno](./packages//polar-deno/)
-- [Astro](./packages/polar-astro)
-- [Elysia](./packages/polar-elysia)
-- [Express](./packages/polar-express)
-- [Fastify](./packages/polar-fastify)
-- [Hono](./packages/polar-hono)
-- [Next.js](./packages/polar-nextjs)
-- [Nuxt](./packages/polar-nuxt)
-- [Remix](./packages/polar-remix)
-- [Sveltekit](./packages/polar-sveltekit)
-- [TanStack Start](./packages/polar-tanstack-start)
+- [BetterAuth](./packages/spaire-betterauth)
+- [Supabase](./packages/spaire-supabase/)
+- [Deno](./packages/spaire-deno/)
+- [Astro](./packages/spaire-astro)
+- [Elysia](./packages/spaire-elysia)
+- [Express](./packages/spaire-express)
+- [Fastify](./packages/spaire-fastify)
+- [Hono](./packages/spaire-hono)
+- [Next.js](./packages/spaire-nextjs)
+- [Nuxt](./packages/spaire-nuxt)
+- [Remix](./packages/spaire-remix)
+- [Sveltekit](./packages/spaire-sveltekit)
+- [TanStack Start](./packages/spaire-tanstack-start)
 
 
 ### Deploying Adapters
