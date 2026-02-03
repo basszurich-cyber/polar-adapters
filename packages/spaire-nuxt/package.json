@@ -1,6 +1,6 @@
 {
   "name": "@spaire/nuxt",
-  "version": "0.5.4",
+  "version": "1.0.0",
   "description": "Spaire integration for Nuxt",
   "repository": {
     "type": "git",

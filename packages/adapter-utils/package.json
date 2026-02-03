@@ -1,6 +1,6 @@
 {
   "name": "@spaire/adapter-utils",
-  "version": "0.4.3",
+  "version": "1.0.0",
   "description": "Core package for Spaire adapters",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
