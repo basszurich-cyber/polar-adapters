@@ -1,5 +1,33 @@
 # polar-nextjs
 
+## 1.0.0
+
+### Major Changes
+
+- Initial release of @spaire packages - rebranded from @polar-sh adapters.
+
+  This is the first release under the new @spaire scope. All packages have been renamed:
+  - @polar-sh/adapter-utils → @spaire/adapter-utils
+  - @polar-sh/nextjs → @spaire/nextjs
+  - @polar-sh/better-auth → @spaire/better-auth
+  - @polar-sh/express → @spaire/express
+  - @polar-sh/astro → @spaire/astro
+  - @polar-sh/hono → @spaire/hono
+  - @polar-sh/fastify → @spaire/fastify
+  - @polar-sh/elysia → @spaire/elysia
+  - @polar-sh/remix → @spaire/remix
+  - @polar-sh/sveltekit → @spaire/sveltekit
+  - @polar-sh/nuxt → @spaire/nuxt
+  - @polar-sh/supabase → @spaire/supabase
+  - @polar-sh/tanstack-start → @spaire/tanstack-start
+
+  Environment variables have been renamed from POLAR*\* to SPAIRE*\*.
+
+### Patch Changes
+
+- Updated dependencies
+  - @spaire/adapter-utils@1.0.0
+
 ## 0.9.3
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@spaire/better-auth",
-  "version": "1.6.4",
+  "version": "2.0.0",
   "description": "Spaire integration for better-auth",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",

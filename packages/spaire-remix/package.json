@@ -1,6 +1,6 @@
 {
   "name": "@spaire/remix",
-  "version": "0.6.3",
+  "version": "1.0.0",
   "description": "Spaire integration for Remix and React Router",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",

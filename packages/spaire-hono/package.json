@@ -1,6 +1,6 @@
 {
   "name": "@spaire/hono",
-  "version": "0.5.3",
+  "version": "1.0.0",
   "description": "Spaire integration for Hono",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
