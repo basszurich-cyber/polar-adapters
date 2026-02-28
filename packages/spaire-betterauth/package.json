@@ -64,6 +64,6 @@
     "zod": "^3.24.2 || ^4"
   },
   "dependencies": {
-    "@spaire/checkout": "^0.2.0"
+    "@spaire/checkout": "npm:@polar-sh/checkout@^0.1.14"
   }
 }
