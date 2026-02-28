@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "@spaire/adapter-utils": "workspace:*",
-    "@spaire/sdk": "^0.42.1"
+    "@spaire/sdk": "^0.45.1"
   },
   "peerDependencies": {
     "fastify": "^5.2.1"

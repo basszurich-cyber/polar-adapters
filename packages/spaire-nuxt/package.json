@@ -36,7 +36,7 @@
   "dependencies": {
     "@nuxt/kit": "^3.15.4",
     "@spaire/adapter-utils": "workspace:*",
-    "@spaire/sdk": "^0.42.1"
+    "@spaire/sdk": "^0.45.1"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",

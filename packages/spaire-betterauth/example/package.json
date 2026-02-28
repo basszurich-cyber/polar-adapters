@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@spaire/better-auth": "workspace:*",
-    "@spaire/sdk": "^0.42.1",
+    "@spaire/sdk": "^0.45.1",
     "better-auth": "1.4.6",
     "better-sqlite3": "^11.10.0",
     "next": "16.0.8",
