@@ -1,4 +1,4 @@
-import type { Polar } from "@polar-sh/sdk";
+import type { Spaire } from "@spaire/sdk";
 import {
 	APIError,
 	createAuthEndpoint,
@@ -14,7 +14,7 @@ export interface UsageOptions {
 	creditProducts?: Product[] | (() => Promise<Product[]>);
 }
 
-export const usage = (_usageOptions?: UsageOptions) => (polar: Polar) => {
+export const usage = (_usageOptions?: UsageOptions) => (spaire: Spaire) => {
 	return {
 		meters: createAuthEndpoint(
 			"/usage/meters/list",
@@ -34,11 +34,11 @@ export const usage = (_usageOptions?: UsageOptions) => (polar: Polar) => {
 				}
 
 				try {
-					const customerSession = await polar.customerSessions.create({
+					const customerSession = await spaire.customerSessions.create({
 						externalCustomerId: ctx.context.session.user.id,
 					});
 
-					const customerMeters = await polar.customerPortal.customerMeters.list(
+					const customerMeters = await spaire.customerPortal.customerMeters.list(
 						{ customerSession: customerSession.token },
 						{
 							page: ctx.query?.page,
@@ -50,7 +50,7 @@ export const usage = (_usageOptions?: UsageOptions) => (polar: Polar) => {
 				} catch (e: unknown) {
 					if (e instanceof Error) {
 						ctx.context.logger.error(
-							`Polar meters list failed. Error: ${e.message}`,
+							`Spaire meters list failed. Error: ${e.message}`,
 						);
 					}
 
@@ -81,7 +81,7 @@ export const usage = (_usageOptions?: UsageOptions) => (polar: Polar) => {
 				}
 
 				try {
-					const ingestion = await polar.events.ingest({
+					const ingestion = await spaire.events.ingest({
 						events: [
 							{
 								name: ctx.body.event,
@@ -95,7 +95,7 @@ export const usage = (_usageOptions?: UsageOptions) => (polar: Polar) => {
 				} catch (e: unknown) {
 					if (e instanceof Error) {
 						ctx.context.logger.error(
-							`Polar ingestion failed. Error: ${e.message}`,
+							`Spaire ingestion failed. Error: ${e.message}`,
 						);
 					}
 

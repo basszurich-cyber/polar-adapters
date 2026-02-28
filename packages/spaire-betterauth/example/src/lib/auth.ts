@@ -1,13 +1,13 @@
 import { betterAuth } from "better-auth";
 import {
-	polar,
+	spaire,
 	checkout,
 	webhooks,
 	usage,
 	portal,
-} from "@polar-sh/better-auth";
+} from "@spaire/better-auth";
 import Database from "better-sqlite3";
-import { polarSDK } from "./polar";
+import { spaireSDK } from "./spaire";
 import { organization } from "better-auth/plugins";
 
 export const auth = betterAuth({
@@ -16,8 +16,8 @@ export const auth = betterAuth({
 	},
 	plugins: [
 		organization(),
-		polar({
-			client: polarSDK,
+		spaire({
+			client: spaireSDK,
 			createCustomerOnSignUp: true,
 			async getCustomerCreateParams() {
 				return {
@@ -42,7 +42,7 @@ export const auth = betterAuth({
 					returnUrl: "https://myapp.com",
 				}),
 				webhooks({
-					secret: process.env["POLAR_WEBHOOK_SECRET"] as string,
+					secret: process.env["SPAIRE_WEBHOOK_SECRET"] as string,
 					onOrganizationUpdated: async (payload) => {
 						console.log(payload);
 					},

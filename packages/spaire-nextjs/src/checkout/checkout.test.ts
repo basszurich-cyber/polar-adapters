@@ -3,8 +3,8 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const mockCheckoutCreate = vi.fn();
 
-vi.mock("@polar-sh/sdk", () => ({
-	Polar: vi.fn().mockImplementation(() => ({
+vi.mock("@spaire/sdk", () => ({
+	Spaire: vi.fn().mockImplementation(() => ({
 		checkouts: {
 			create: mockCheckoutCreate,
 		},
@@ -52,7 +52,7 @@ describe("Checkout", () => {
 
 		it("should create checkout with single product", async () => {
 			mockCheckoutCreate.mockResolvedValue({
-				url: "https://polar.sh/checkout/123",
+				url: "https://spaire.sh/checkout/123",
 			});
 
 			const checkout = Checkout({ accessToken: "test-token" });
@@ -84,7 +84,7 @@ describe("Checkout", () => {
 
 		it("should create checkout with multiple products", async () => {
 			mockCheckoutCreate.mockResolvedValue({
-				url: "https://polar.sh/checkout/123",
+				url: "https://spaire.sh/checkout/123",
 			});
 
 			const checkout = Checkout({ accessToken: "test-token" });
@@ -103,7 +103,7 @@ describe("Checkout", () => {
 
 		it("should include successUrl with checkoutId when configured", async () => {
 			mockCheckoutCreate.mockResolvedValue({
-				url: "https://polar.sh/checkout/123",
+				url: "https://spaire.sh/checkout/123",
 			});
 
 			const checkout = Checkout({
@@ -126,7 +126,7 @@ describe("Checkout", () => {
 
 		it("should include successUrl without checkoutId when disabled", async () => {
 			mockCheckoutCreate.mockResolvedValue({
-				url: "https://polar.sh/checkout/123",
+				url: "https://spaire.sh/checkout/123",
 			});
 
 			const checkout = Checkout({
@@ -149,7 +149,7 @@ describe("Checkout", () => {
 
 		it("should add theme parameter to redirect URL", async () => {
 			mockCheckoutCreate.mockResolvedValue({
-				url: "https://polar.sh/checkout/123",
+				url: "https://spaire.sh/checkout/123",
 			});
 
 			const checkout = Checkout({
@@ -163,13 +163,13 @@ describe("Checkout", () => {
 			const response = await checkout(request);
 
 			expect(response.headers.get("location")).toBe(
-				"https://polar.sh/checkout/123?theme=dark",
+				"https://spaire.sh/checkout/123?theme=dark",
 			);
 		});
 
 		it("should parse customer parameters correctly", async () => {
 			mockCheckoutCreate.mockResolvedValue({
-				url: "https://polar.sh/checkout/123",
+				url: "https://spaire.sh/checkout/123",
 			});
 
 			const checkout = Checkout({ accessToken: "test-token" });
@@ -219,7 +219,7 @@ describe("Checkout", () => {
 
 		it("should handle allowDiscountCodes as false", async () => {
 			mockCheckoutCreate.mockResolvedValue({
-				url: "https://polar.sh/checkout/123",
+				url: "https://spaire.sh/checkout/123",
 			});
 
 			const checkout = Checkout({ accessToken: "test-token" });
@@ -238,7 +238,7 @@ describe("Checkout", () => {
 
 		it("should handle seats parameter", async () => {
 			mockCheckoutCreate.mockResolvedValue({
-				url: "https://polar.sh/checkout/123",
+				url: "https://spaire.sh/checkout/123",
 			});
 
 			const checkout = Checkout({ accessToken: "test-token" });

@@ -4,10 +4,10 @@ import {
 	onBeforeUserCreate,
 	onUserUpdate,
 } from "../../hooks/customer";
-import { createTestPolarOptions, mockApiError } from "../utils/helpers";
+import { createTestSpaireOptions, mockApiError } from "../utils/helpers";
 import {
 	createMockCustomer,
-	createMockPolarClient,
+	createMockSpaireClient,
 	createMockUser,
 } from "../utils/mocks";
 
@@ -25,10 +25,10 @@ vi.mock("better-auth/api", () => ({
 const { APIError } = (await vi.importMock("better-auth/api")) as any;
 
 describe("customer hooks", () => {
-	let mockClient: ReturnType<typeof createMockPolarClient>;
+	let mockClient: ReturnType<typeof createMockSpaireClient>;
 
 	beforeEach(() => {
-		mockClient = createMockPolarClient();
+		mockClient = createMockSpaireClient();
 		vi.mocked(mockClient.customers.list).mockResolvedValue({
 			result: {
 				items: [],
@@ -47,7 +47,7 @@ describe("customer hooks", () => {
 
 	describe("onBeforeUserCreate", () => {
 		it("should create customer when createCustomerOnSignUp is enabled", async () => {
-			const options = createTestPolarOptions({
+			const options = createTestSpaireOptions({
 				client: mockClient,
 				createCustomerOnSignUp: true,
 			});
@@ -74,7 +74,7 @@ describe("customer hooks", () => {
 		});
 
 		it("should not create customer when customer already exists", async () => {
-			const options = createTestPolarOptions({
+			const options = createTestSpaireOptions({
 				client: mockClient,
 				createCustomerOnSignUp: true,
 			});
@@ -109,7 +109,7 @@ describe("customer hooks", () => {
 				metadata: { source: "website", plan: "premium" },
 			});
 
-			const options = createTestPolarOptions({
+			const options = createTestSpaireOptions({
 				client: mockClient,
 				createCustomerOnSignUp: true,
 				getCustomerCreateParams: mockGetCustomerCreateParams,
@@ -137,7 +137,7 @@ describe("customer hooks", () => {
 		});
 
 		it("should not create customer when createCustomerOnSignUp is disabled", async () => {
-			const options = createTestPolarOptions({
+			const options = createTestSpaireOptions({
 				client: mockClient,
 				createCustomerOnSignUp: false,
 			});
@@ -152,7 +152,7 @@ describe("customer hooks", () => {
 		});
 
 		it("should not create customer when context is missing", async () => {
-			const options = createTestPolarOptions({
+			const options = createTestSpaireOptions({
 				client: mockClient,
 				createCustomerOnSignUp: true,
 			});
@@ -166,7 +166,7 @@ describe("customer hooks", () => {
 		});
 
 		it("should handle API errors during customer creation", async () => {
-			const options = createTestPolarOptions({
+			const options = createTestSpaireOptions({
 				client: mockClient,
 				createCustomerOnSignUp: true,
 			});
@@ -181,12 +181,12 @@ describe("customer hooks", () => {
 			const hook = onBeforeUserCreate(options);
 
 			await expect(hook(mockUser, ctx)).rejects.toThrow(
-				"Polar customer creation failed. Error: Internal server error",
+				"Spaire customer creation failed. Error: Internal server error",
 			);
 		});
 
 		it("should handle non-Error exceptions", async () => {
-			const options = createTestPolarOptions({
+			const options = createTestSpaireOptions({
 				client: mockClient,
 				createCustomerOnSignUp: true,
 			});
@@ -199,12 +199,12 @@ describe("customer hooks", () => {
 			const hook = onBeforeUserCreate(options);
 
 			await expect(hook(mockUser, ctx)).rejects.toThrow(
-				"Polar customer creation failed. Error: Unknown error",
+				"Spaire customer creation failed. Error: Unknown error",
 			);
 		});
 
 		it("should throw error when user email is missing", async () => {
-			const options = createTestPolarOptions({
+			const options = createTestSpaireOptions({
 				client: mockClient,
 				createCustomerOnSignUp: true,
 			});
@@ -223,7 +223,7 @@ describe("customer hooks", () => {
 
 	describe("onAfterUserCreate", () => {
 		it("should update existing customer without external ID", async () => {
-			const options = createTestPolarOptions({
+			const options = createTestSpaireOptions({
 				client: mockClient,
 				createCustomerOnSignUp: true,
 			});
@@ -272,7 +272,7 @@ describe("customer hooks", () => {
 		});
 
 		it("should update existing customer with different external ID", async () => {
-			const options = createTestPolarOptions({
+			const options = createTestSpaireOptions({
 				client: mockClient,
 				createCustomerOnSignUp: true,
 			});
@@ -315,7 +315,7 @@ describe("customer hooks", () => {
 		});
 
 		it("should not update existing customer with same external ID", async () => {
-			const options = createTestPolarOptions({
+			const options = createTestSpaireOptions({
 				client: mockClient,
 				createCustomerOnSignUp: true,
 			});
@@ -349,7 +349,7 @@ describe("customer hooks", () => {
 		});
 
 		it("should not update customer when createCustomerOnSignUp is disabled", async () => {
-			const options = createTestPolarOptions({
+			const options = createTestSpaireOptions({
 				client: mockClient,
 				createCustomerOnSignUp: false,
 			});
@@ -365,7 +365,7 @@ describe("customer hooks", () => {
 		});
 
 		it("should not update customer when context is missing", async () => {
-			const options = createTestPolarOptions({
+			const options = createTestSpaireOptions({
 				client: mockClient,
 				createCustomerOnSignUp: true,
 			});
@@ -380,7 +380,7 @@ describe("customer hooks", () => {
 		});
 
 		it("should handle API errors during customer linking", async () => {
-			const options = createTestPolarOptions({
+			const options = createTestSpaireOptions({
 				client: mockClient,
 				createCustomerOnSignUp: true,
 			});
@@ -395,12 +395,12 @@ describe("customer hooks", () => {
 			const hook = onAfterUserCreate(options);
 
 			await expect(hook(mockUser, ctx)).rejects.toThrow(
-				"Polar customer creation failed. Error: Internal server error",
+				"Spaire customer creation failed. Error: Internal server error",
 			);
 		});
 
 		it("should handle non-Error exceptions during customer linking", async () => {
-			const options = createTestPolarOptions({
+			const options = createTestSpaireOptions({
 				client: mockClient,
 				createCustomerOnSignUp: true,
 			});
@@ -413,14 +413,14 @@ describe("customer hooks", () => {
 			const hook = onAfterUserCreate(options);
 
 			await expect(hook(mockUser, ctx)).rejects.toThrow(
-				"Polar customer creation failed. Error: Unknown error",
+				"Spaire customer creation failed. Error: Unknown error",
 			);
 		});
 	});
 
 	describe("onUserUpdate", () => {
 		it("should update customer when createCustomerOnSignUp is enabled", async () => {
-			const options = createTestPolarOptions({
+			const options = createTestSpaireOptions({
 				client: mockClient,
 				createCustomerOnSignUp: true,
 			});
@@ -454,7 +454,7 @@ describe("customer hooks", () => {
 		});
 
 		it("should not update customer when createCustomerOnSignUp is disabled", async () => {
-			const options = createTestPolarOptions({
+			const options = createTestSpaireOptions({
 				client: mockClient,
 				createCustomerOnSignUp: false,
 			});
@@ -472,7 +472,7 @@ describe("customer hooks", () => {
 		});
 
 		it("should not update customer when context is missing", async () => {
-			const options = createTestPolarOptions({
+			const options = createTestSpaireOptions({
 				client: mockClient,
 				createCustomerOnSignUp: true,
 			});
@@ -486,7 +486,7 @@ describe("customer hooks", () => {
 		});
 
 		it("should handle API errors during customer update", async () => {
-			const options = createTestPolarOptions({
+			const options = createTestSpaireOptions({
 				client: mockClient,
 				createCustomerOnSignUp: true,
 			});
@@ -507,12 +507,12 @@ describe("customer hooks", () => {
 			await hook(mockUser, ctx);
 
 			expect(ctx.context.logger.error).toHaveBeenCalledWith(
-				"Polar customer update failed. Error: Customer not found",
+				"Spaire customer update failed. Error: Customer not found",
 			);
 		});
 
 		it("should handle non-Error exceptions during update", async () => {
-			const options = createTestPolarOptions({
+			const options = createTestSpaireOptions({
 				client: mockClient,
 				createCustomerOnSignUp: true,
 			});
@@ -532,12 +532,12 @@ describe("customer hooks", () => {
 			await hook(mockUser, ctx);
 
 			expect(ctx.context.logger.error).toHaveBeenCalledWith(
-				"Polar customer update failed. Error: Unknown error",
+				"Spaire customer update failed. Error: Unknown error",
 			);
 		});
 
 		it("should handle network timeouts gracefully", async () => {
-			const options = createTestPolarOptions({
+			const options = createTestSpaireOptions({
 				client: mockClient,
 				createCustomerOnSignUp: true,
 			});
@@ -557,7 +557,7 @@ describe("customer hooks", () => {
 			await hook(mockUser, ctx);
 
 			expect(ctx.context.logger.error).toHaveBeenCalledWith(
-				"Polar customer update failed. Error: Network timeout",
+				"Spaire customer update failed. Error: Network timeout",
 			);
 		});
 	});

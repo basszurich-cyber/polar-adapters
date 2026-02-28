@@ -1,22 +1,22 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { polar } from "../index";
+import { spaire } from "../index";
 import { checkout } from "../plugins/checkout";
 import { portal } from "../plugins/portal";
 import { usage } from "../plugins/usage";
 import { webhooks } from "../plugins/webhooks";
-import { createTestPolarOptions } from "./utils/helpers";
-import { createMockPolarClient, createMockUser } from "./utils/mocks";
+import { createTestSpaireOptions } from "./utils/helpers";
+import { createMockSpaireClient, createMockUser } from "./utils/mocks";
 
 vi.mock("../plugins/checkout");
 vi.mock("../plugins/portal");
 vi.mock("../plugins/usage");
 vi.mock("../plugins/webhooks");
 
-describe("polar plugin", () => {
-	let mockClient: ReturnType<typeof createMockPolarClient>;
+describe("spaire plugin", () => {
+	let mockClient: ReturnType<typeof createMockSpaireClient>;
 
 	beforeEach(() => {
-		mockClient = createMockPolarClient();
+		mockClient = createMockSpaireClient();
 		vi.clearAllMocks();
 
 		vi.mocked(checkout).mockReturnValue(
@@ -46,14 +46,14 @@ describe("polar plugin", () => {
 	});
 
 	it("should create a plugin with correct id", () => {
-		const options = createTestPolarOptions({
+		const options = createTestSpaireOptions({
 			client: mockClient,
 			use: [checkout()],
 		});
 
-		const plugin = polar(options);
+		const plugin = spaire(options);
 
-		expect(plugin.id).toBe("polar");
+		expect(plugin.id).toBe("spaire");
 	});
 
 	it("should combine endpoints from all plugins", () => {
@@ -65,12 +65,12 @@ describe("polar plugin", () => {
 		vi.mocked(checkout).mockReturnValue(mockCheckoutPlugin);
 		vi.mocked(portal).mockReturnValue(mockPortalPlugin);
 
-		const options = createTestPolarOptions({
+		const options = createTestSpaireOptions({
 			client: mockClient,
 			use: [checkout(), portal()],
 		});
 
-		const plugin = polar(options);
+		const plugin = spaire(options);
 
 		expect(plugin.endpoints).toHaveProperty("checkout/create");
 		expect(plugin.endpoints).toHaveProperty("portal/url");
@@ -79,12 +79,12 @@ describe("polar plugin", () => {
 	});
 
 	it("should initialize with database hooks", () => {
-		const options = createTestPolarOptions({
+		const options = createTestSpaireOptions({
 			client: mockClient,
 			use: [checkout()],
 		});
 
-		const plugin = polar(options);
+		const plugin = spaire(options);
 		const initResult = plugin.init();
 
 		expect(initResult.options).toHaveProperty("databaseHooks");
@@ -100,12 +100,12 @@ describe("polar plugin", () => {
 	});
 
 	it("should handle empty plugin array", () => {
-		const options = createTestPolarOptions({
+		const options = createTestSpaireOptions({
 			client: mockClient,
 			use: [],
 		});
 
-		const plugin = polar(options);
+		const plugin = spaire(options);
 
 		expect(plugin.endpoints).toEqual({});
 	});
@@ -117,12 +117,12 @@ describe("polar plugin", () => {
 		vi.mocked(checkout).mockReturnValueOnce(mockPlugin1);
 		vi.mocked(portal).mockReturnValueOnce(mockPlugin2);
 
-		const options = createTestPolarOptions({
+		const options = createTestSpaireOptions({
 			client: mockClient,
 			use: [checkout(), portal()],
 		});
 
-		const plugin = polar(options);
+		const plugin = spaire(options);
 
 		expect(plugin.endpoints).toHaveProperty("test/endpoint1");
 		expect(plugin.endpoints).toHaveProperty("test/endpoint2");
@@ -130,16 +130,16 @@ describe("polar plugin", () => {
 
 	it("should preserve plugin configuration", () => {
 		const customGetCustomerCreateParams = vi.fn();
-		const options = createTestPolarOptions({
+		const options = createTestSpaireOptions({
 			client: mockClient,
 			createCustomerOnSignUp: false,
 			getCustomerCreateParams: customGetCustomerCreateParams,
 			use: [checkout()],
 		});
 
-		const plugin = polar(options);
+		const plugin = spaire(options);
 
 		expect(plugin).toBeDefined();
-		expect(plugin.id).toBe("polar");
+		expect(plugin.id).toBe("spaire");
 	});
 });

@@ -1,8 +1,8 @@
-import { Polar } from "@polar-sh/sdk";
+import { Spaire } from "@spaire/sdk";
 import {
 	WebhookVerificationError,
 	validateEvent,
-} from "@polar-sh/sdk/webhooks";
+} from "@spaire/sdk/webhooks";
 import type { RequestEvent } from "@sveltejs/kit";
 import {
 	type WebhooksConfig,
@@ -37,7 +37,7 @@ export const Checkout = ({
 	theme,
 	includeCheckoutId = true,
 }: CheckoutConfig): CheckoutHandler => {
-	const polar = new Polar({ accessToken, server });
+	const spaire = new Spaire({ accessToken, server });
 
 	return async (event) => {
 		const url = new URL(event.request.url);
@@ -61,7 +61,7 @@ export const Checkout = ({
 		const retUrl = returnUrl ? new URL(returnUrl, event.url) : undefined;
 
 		try {
-			const result = await polar.checkouts.create({
+			const result = await spaire.checkouts.create({
 				products,
 				successUrl: success ? decodeURI(success.toString()) : undefined,
 				customerId: url.searchParams.get("customerId") ?? undefined,
@@ -136,7 +136,7 @@ export const CustomerPortal = (config: CustomerPortalConfig): CustomerPortalHand
 		returnUrl,
 	} = config;
 
-	const polar = new Polar({
+	const spaire = new Spaire({
 		accessToken,
 		server,
 	});
@@ -155,7 +155,7 @@ export const CustomerPortal = (config: CustomerPortalConfig): CustomerPortalHand
 					);
 				}
 
-				const { customerPortalUrl } = await polar.customerSessions.create({
+				const { customerPortalUrl } = await spaire.customerSessions.create({
 					returnUrl: decodedReturnUrl,
 					externalCustomerId,
 				});
@@ -175,7 +175,7 @@ export const CustomerPortal = (config: CustomerPortalConfig): CustomerPortalHand
 				);
 			}
 
-			const { customerPortalUrl } = await polar.customerSessions.create({
+			const { customerPortalUrl } = await spaire.customerSessions.create({
 				returnUrl: decodedReturnUrl,
 				customerId,
 			});

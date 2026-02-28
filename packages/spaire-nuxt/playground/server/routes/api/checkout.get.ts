@@ -1,12 +1,12 @@
 export default defineEventHandler((event) => {
   const {
-    private: { polarAccessToken, polarCheckoutSuccessUrl, polarServer },
+    private: { spaireAccessToken, spaireCheckoutSuccessUrl, spaireServer },
   } = useRuntimeConfig();
 
   const checkoutHandler = Checkout({
-    accessToken: polarAccessToken,
-    successUrl: polarCheckoutSuccessUrl,
-    server: polarServer as "sandbox" | "production",
+    accessToken: spaireAccessToken,
+    successUrl: spaireCheckoutSuccessUrl,
+    server: spaireServer as "sandbox" | "production",
   });
 
   return checkoutHandler(event);

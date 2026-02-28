@@ -7,8 +7,8 @@ const mockSessionCreate = vi
 const mockCheckoutCreate = vi.fn().mockResolvedValue({ url: mockCheckoutUrl });
 
 // Mock the module before any imports
-vi.mock("@polar-sh/sdk", async (importOriginal) => {
-	class Polar {
+vi.mock("@spaire/sdk", async (importOriginal) => {
+	class Spaire {
 		customerSessions = {
 			create: mockSessionCreate,
 		};
@@ -20,11 +20,11 @@ vi.mock("@polar-sh/sdk", async (importOriginal) => {
 
 	return {
 		...(await importOriginal()),
-		Polar,
+		Spaire,
 	};
 });
 
-vi.mock("@polar-sh/sdk/webhooks", async (importOriginal) => {
+vi.mock("@spaire/sdk/webhooks", async (importOriginal) => {
 	return {
 		...(await importOriginal()),
 		WebhookVerificationError: vi.fn(),

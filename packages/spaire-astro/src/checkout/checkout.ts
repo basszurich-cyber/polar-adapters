@@ -1,4 +1,4 @@
-import { Polar } from "@polar-sh/sdk";
+import { Spaire } from "@spaire/sdk";
 import type { APIRoute } from "astro";
 
 export interface CheckoutConfig {
@@ -24,7 +24,7 @@ export const Checkout = ({
 			accessToken = getSecret("SPAIRE_ACCESS_TOKEN");
 		}
 
-		const polar = new Polar({
+		const spaire = new Spaire({
 			accessToken,
 			server,
 		});
@@ -47,7 +47,7 @@ export const Checkout = ({
 		const retUrl = returnUrl ? new URL(returnUrl) : undefined;
 
 		try {
-			const result = await polar.checkouts.create({
+			const result = await spaire.checkouts.create({
 				products,
 				successUrl: success ? decodeURI(success.toString()) : undefined,
 				customerId: url.searchParams.get("customerId") ?? undefined,

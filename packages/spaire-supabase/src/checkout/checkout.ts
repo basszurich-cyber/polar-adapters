@@ -1,4 +1,4 @@
-import { Polar } from "@polar-sh/sdk";
+import { Spaire } from "@spaire/sdk";
 
 export interface CheckoutConfig {
 	accessToken?: string;
@@ -17,7 +17,7 @@ export const Checkout = ({
 	theme,
 	includeCheckoutId = true,
 }: CheckoutConfig) => {
-	const polar = new Polar({
+	const spaire = new Spaire({
 		accessToken,
 		server,
 	});
@@ -45,7 +45,7 @@ export const Checkout = ({
 		const retUrl = returnUrl ? new URL(returnUrl) : undefined;
 
 		try {
-			const result = await polar.checkouts.create({
+			const result = await spaire.checkouts.create({
 				products,
 				successUrl: success ? decodeURI(success.toString()) : undefined,
 				customerId: url.searchParams.get("customerId") ?? undefined,

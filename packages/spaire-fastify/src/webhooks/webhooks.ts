@@ -5,7 +5,7 @@ import {
 import {
 	WebhookVerificationError,
 	validateEvent,
-} from "@polar-sh/sdk/webhooks";
+} from "@spaire/sdk/webhooks";
 import type { FastifyReply, FastifyRequest, RouteHandler } from "fastify";
 
 export {

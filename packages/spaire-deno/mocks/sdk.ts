@@ -8,7 +8,7 @@ const mockSessionCreate = sinon
 
 const mockCheckoutCreate = sinon.stub().returns({ url: mockCheckoutUrl });
 
-export class Polar {
+export class Spaire {
   config: any;
   constructor(config: any) {
     this.config = config;

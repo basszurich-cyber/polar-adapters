@@ -1,4 +1,4 @@
-import { Polar } from "@polar-sh/sdk";
+import { Spaire } from "@spaire/sdk";
 import { type Context, status } from "elysia";
 import type { InlineHandler } from "elysia/types";
 
@@ -15,7 +15,7 @@ export const CustomerPortal = ({
 	getCustomerId,
 	returnUrl,
 }: CustomerPortalConfig): InlineHandler => {
-	const polar = new Polar({
+	const spaire = new Spaire({
 		accessToken: accessToken ?? process.env["SPAIRE_ACCESS_TOKEN"],
 		server,
 	});
@@ -30,7 +30,7 @@ export const CustomerPortal = ({
 		}
 
 		try {
-			const result = await polar.customerSessions.create({
+			const result = await spaire.customerSessions.create({
 				customerId,
 				returnUrl: retUrl ? decodeURI(retUrl.toString()) : undefined,
 			});

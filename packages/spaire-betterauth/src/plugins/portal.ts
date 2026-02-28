@@ -1,4 +1,4 @@
-import type { Polar } from "@polar-sh/sdk";
+import type { Spaire } from "@spaire/sdk";
 import { APIError } from "better-auth/api";
 import { sessionMiddleware } from "better-auth/api";
 import { createAuthEndpoint } from "better-auth/plugins";
@@ -10,7 +10,7 @@ export interface PortalConfig {
 
 export const portal =
 	({ returnUrl }: PortalConfig = {}) =>
-	(polar: Polar) => {
+	(spaire: Spaire) => {
 		const retUrl = returnUrl ? new URL(returnUrl) : undefined;
 
 		return {
@@ -28,7 +28,7 @@ export const portal =
 					}
 
 					try {
-						const customerSession = await polar.customerSessions.create({
+						const customerSession = await spaire.customerSessions.create({
 							externalCustomerId: ctx.context.session?.user.id,
 							returnUrl: retUrl ? decodeURI(retUrl.toString()) : undefined,
 						});
@@ -40,7 +40,7 @@ export const portal =
 					} catch (e: unknown) {
 						if (e instanceof Error) {
 							ctx.context.logger.error(
-								`Polar customer portal creation failed. Error: ${e.message}`,
+								`Spaire customer portal creation failed. Error: ${e.message}`,
 							);
 						}
 
@@ -64,7 +64,7 @@ export const portal =
 					}
 
 					try {
-						const state = await polar.customers.getStateExternal({
+						const state = await spaire.customers.getStateExternal({
 							externalId: ctx.context.session?.user.id,
 						});
 
@@ -72,7 +72,7 @@ export const portal =
 					} catch (e: unknown) {
 						if (e instanceof Error) {
 							ctx.context.logger.error(
-								`Polar subscriptions list failed. Error: ${e.message}`,
+								`Spaire subscriptions list failed. Error: ${e.message}`,
 							);
 						}
 
@@ -102,11 +102,11 @@ export const portal =
 					}
 
 					try {
-						const customerSession = await polar.customerSessions.create({
+						const customerSession = await spaire.customerSessions.create({
 							externalCustomerId: ctx.context.session?.user.id,
 						});
 
-						const benefits = await polar.customerPortal.benefitGrants.list(
+						const benefits = await spaire.customerPortal.benefitGrants.list(
 							{ customerSession: customerSession.token },
 							{
 								page: ctx.query?.page,
@@ -118,7 +118,7 @@ export const portal =
 					} catch (e: unknown) {
 						if (e instanceof Error) {
 							ctx.context.logger.error(
-								`Polar benefits list failed. Error: ${e.message}`,
+								`Spaire benefits list failed. Error: ${e.message}`,
 							);
 						}
 
@@ -151,7 +151,7 @@ export const portal =
 
 					if (ctx.query?.referenceId) {
 						try {
-							const subscriptions = await polar.subscriptions.list({
+							const subscriptions = await spaire.subscriptions.list({
 								page: ctx.query?.page,
 								limit: ctx.query?.limit,
 								active: ctx.query?.active,
@@ -165,7 +165,7 @@ export const portal =
 							console.log(e);
 							if (e instanceof Error) {
 								ctx.context.logger.error(
-									`Polar subscriptions list with referenceId failed. Error: ${e.message}`,
+									`Spaire subscriptions list with referenceId failed. Error: ${e.message}`,
 								);
 							}
 
@@ -176,11 +176,11 @@ export const portal =
 					}
 
 					try {
-						const customerSession = await polar.customerSessions.create({
+						const customerSession = await spaire.customerSessions.create({
 							externalCustomerId: ctx.context.session?.user.id,
 						});
 
-						const subscriptions = await polar.customerPortal.subscriptions.list(
+						const subscriptions = await spaire.customerPortal.subscriptions.list(
 							{ customerSession: customerSession.token },
 							{
 								page: ctx.query?.page,
@@ -193,12 +193,12 @@ export const portal =
 					} catch (e: unknown) {
 						if (e instanceof Error) {
 							ctx.context.logger.error(
-								`Polar subscriptions list failed. Error: ${e.message}`,
+								`Spaire subscriptions list failed. Error: ${e.message}`,
 							);
 						}
 
 						throw new APIError("INTERNAL_SERVER_ERROR", {
-							message: "Polar subscriptions list failed",
+							message: "Spaire subscriptions list failed",
 						});
 					}
 				},
@@ -224,11 +224,11 @@ export const portal =
 					}
 
 					try {
-						const customerSession = await polar.customerSessions.create({
+						const customerSession = await spaire.customerSessions.create({
 							externalCustomerId: ctx.context.session?.user.id,
 						});
 
-						const orders = await polar.customerPortal.orders.list(
+						const orders = await spaire.customerPortal.orders.list(
 							{ customerSession: customerSession.token },
 							{
 								page: ctx.query?.page,
@@ -241,7 +241,7 @@ export const portal =
 					} catch (e: unknown) {
 						if (e instanceof Error) {
 							ctx.context.logger.error(
-								`Polar orders list failed. Error: ${e.message}`,
+								`Spaire orders list failed. Error: ${e.message}`,
 							);
 						}
 

@@ -14,7 +14,7 @@ A [Better Auth](https://github.com/better-auth/better-auth) plugin for integrati
 ## Installation
 
 ```bash
-pnpm add better-auth @spaire/better-auth @polar-sh/sdk
+pnpm add better-auth @spaire/better-auth @spaire/sdk
 ```
 
 ## Preparation
@@ -38,9 +38,9 @@ The Spaire plugin comes with a handful additional plugins which adds functionali
 ```typescript
 import { betterAuth } from "better-auth";
 import { spaire, checkout, portal, usage, webhooks } from "@spaire/better-auth";
-import { Polar } from "@polar-sh/sdk";
+import { Spaire } from "@spaire/sdk";
 
-const spaireClient = new Polar({
+const spaireClient = new Spaire({
     accessToken: process.env.SPAIRE_ACCESS_TOKEN,
     // Use 'sandbox' if you're using the Spaire Sandbox environment
     // Remember that access tokens, products, etc. are completely separated between environments.
@@ -110,9 +110,9 @@ import {
   usage,
   webhooks,
 } from "@spaire/better-auth";
-import { Polar } from "@polar-sh/sdk";
+import { Spaire } from "@spaire/sdk";
 
-const spaireClient = new Polar({
+const spaireClient = new Spaire({
   accessToken: process.env.SPAIRE_ACCESS_TOKEN,
   // Use 'sandbox' if you're using the Spaire Sandbox environment
   // Remember that access tokens, products, etc. are completely separated between environments.
@@ -141,7 +141,7 @@ const auth = betterAuth({
 
 ### Required Options
 
-- `client`: Polar SDK client instance
+- `client`: Spaire SDK client instance
 
 ### Optional Options
 

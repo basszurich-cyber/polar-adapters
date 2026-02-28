@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { portal } from "../../plugins/portal";
 import { mockApiError } from "../utils/helpers";
-import { createMockPolarClient } from "../utils/mocks";
+import { createMockSpaireClient } from "../utils/mocks";
 
 vi.mock("better-auth/api", () => ({
 	APIError: class APIError extends Error {
@@ -31,10 +31,10 @@ const { createAuthEndpoint } = (await vi.importMock(
 )) as any;
 
 describe("portal plugin", () => {
-	let mockClient: ReturnType<typeof createMockPolarClient>;
+	let mockClient: ReturnType<typeof createMockSpaireClient>;
 
 	beforeEach(() => {
-		mockClient = createMockPolarClient();
+		mockClient = createMockSpaireClient();
 		vi.clearAllMocks();
 	});
 
@@ -86,7 +86,7 @@ describe("portal plugin", () => {
 		it("should create customer portal session and return URL", async () => {
 			const mockSession = {
 				token: "session-token-123",
-				customerPortalUrl: "https://polar.sh/portal/session-123",
+				customerPortalUrl: "https://spaire.sh/portal/session-123",
 			};
 
 			vi.mocked(mockClient.customerSessions.create).mockResolvedValue(
@@ -107,7 +107,7 @@ describe("portal plugin", () => {
 			});
 
 			expect(ctx.json).toHaveBeenCalledWith({
-				url: "https://polar.sh/portal/session-123",
+				url: "https://spaire.sh/portal/session-123",
 				redirect: true,
 			});
 		});
@@ -138,7 +138,7 @@ describe("portal plugin", () => {
 				"Customer portal creation failed",
 			);
 			expect(ctx.context.logger.error).toHaveBeenCalledWith(
-				expect.stringContaining("Polar customer portal creation failed"),
+				expect.stringContaining("Spaire customer portal creation failed"),
 			);
 		});
 	});
@@ -203,7 +203,7 @@ describe("portal plugin", () => {
 
 			await expect(handler(ctx)).rejects.toThrow("Subscriptions list failed");
 			expect(ctx.context.logger.error).toHaveBeenCalledWith(
-				expect.stringContaining("Polar subscriptions list failed"),
+				expect.stringContaining("Spaire subscriptions list failed"),
 			);
 		});
 	});
@@ -402,7 +402,7 @@ describe("portal plugin", () => {
 			};
 
 			await expect(handler(ctx)).rejects.toThrow(
-				"Polar subscriptions list failed",
+				"Spaire subscriptions list failed",
 			);
 		});
 	});

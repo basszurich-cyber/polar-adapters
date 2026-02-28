@@ -1,4 +1,4 @@
-import { Polar } from "@polar-sh/sdk";
+import { Spaire } from "@spaire/sdk";
 import { createError, sendRedirect } from "h3";
 import type { H3Event } from "h3";
 
@@ -31,12 +31,12 @@ export const CustomerPortal = ({
 		}
 
 		try {
-			const polar = new Polar({
+			const spaire = new Spaire({
 				accessToken,
 				server,
 			});
 
-			const result = await polar.customerSessions.create({
+			const result = await spaire.customerSessions.create({
 				customerId,
 				returnUrl: retUrl ? decodeURI(retUrl.toString()) : undefined,
 			});

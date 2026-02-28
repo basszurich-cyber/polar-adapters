@@ -1,4 +1,4 @@
-import { Polar } from "@polar-sh/sdk";
+import { Spaire } from "@spaire/sdk";
 // @ts-expect-error - TODO: fix this
 import type { StartAPIMethodCallback } from "@tanstack/react-start/api";
 
@@ -19,7 +19,7 @@ export const Checkout = <TPath extends string = string>({
 	theme,
 	includeCheckoutId = true,
 }: CheckoutConfig): StartAPIMethodCallback<TPath> => {
-	const polar = new Polar({
+	const spaire = new Spaire({
 		accessToken,
 		server,
 	});
@@ -45,7 +45,7 @@ export const Checkout = <TPath extends string = string>({
 		const retUrl = returnUrl ? new URL(returnUrl) : undefined;
 
 		try {
-			const result = await polar.checkouts.create({
+			const result = await spaire.checkouts.create({
 				products,
 				successUrl: success ? decodeURI(success.toString()) : undefined,
 				customerId: url.searchParams.get("customerId") ?? undefined,

@@ -1,10 +1,10 @@
 // Define mock values at the top level
-const mockCheckoutUrl = "https://polar.sh/checkout/123";
+const mockCheckoutUrl = "https://spaire.sh/checkout/123";
 const mockCheckoutCreate = vi.fn(() => ({ url: mockCheckoutUrl }));
 
 // Mock the module before any imports
-vi.mock("@polar-sh/sdk", async (importOriginal) => {
-	class Polar {
+vi.mock("@spaire/sdk", async (importOriginal) => {
+	class Spaire {
 		checkouts = {
 			create: mockCheckoutCreate,
 		};
@@ -12,7 +12,7 @@ vi.mock("@polar-sh/sdk", async (importOriginal) => {
 
 	return {
 		...(await importOriginal()),
-		Polar,
+		Spaire,
 	};
 });
 
@@ -132,7 +132,7 @@ describe("Checkout", () => {
 			const response = await checkout(request);
 
 			expect(response.headers.get("location")).toBe(
-				"https://polar.sh/checkout/123?theme=dark",
+				"https://spaire.sh/checkout/123?theme=dark",
 			);
 		});
 

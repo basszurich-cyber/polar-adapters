@@ -1,4 +1,4 @@
-import { Polar } from "@polar-sh/sdk";
+import { Spaire } from "@spaire/sdk";
 import { type NextRequest, NextResponse } from "next/server";
 
 interface CustomerPortalBaseConfig {
@@ -31,7 +31,7 @@ export type CustomerPortalConfig =
 export const CustomerPortal = (config: CustomerPortalConfig) => {
 	const { accessToken, server, returnUrl } = config;
 
-	const polar = new Polar({
+	const spaire = new Spaire({
 		accessToken,
 		server,
 	});
@@ -52,7 +52,7 @@ export const CustomerPortal = (config: CustomerPortalConfig) => {
 			}
 
 			try {
-				const { customerPortalUrl } = await polar.customerSessions.create({
+				const { customerPortalUrl } = await spaire.customerSessions.create({
 					returnUrl: decodedReturnUrl,
 					externalCustomerId,
 				});
@@ -74,7 +74,7 @@ export const CustomerPortal = (config: CustomerPortalConfig) => {
 		}
 
 		try {
-			const { customerPortalUrl } = await polar.customerSessions.create({
+			const { customerPortalUrl } = await spaire.customerSessions.create({
 				returnUrl: decodedReturnUrl,
 				customerId,
 			});

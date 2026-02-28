@@ -1,12 +1,10 @@
-import { PolarEmbedCheckout } from "@polar-sh/checkout/embed";
-import type { PolarEmbedCheckout as PolarEmbedCheckoutType } from "@polar-sh/checkout/embed";
+import { SpaireEmbedCheckout } from "@spaire/checkout/embed";
+import type { SpaireEmbedCheckout as SpaireEmbedCheckoutType } from "@spaire/checkout/embed";
 import type { BetterAuthClientPlugin } from "better-auth";
 import type { BetterFetchOption } from "better-auth/client";
 import type { CheckoutParams, spaire } from "./index";
 
-export type { PolarEmbedCheckoutType as SpaireEmbedCheckout };
-/** @deprecated Use SpaireEmbedCheckout instead */
-export type { PolarEmbedCheckoutType as PolarEmbedCheckout };
+export type { SpaireEmbedCheckoutType as SpaireEmbedCheckout };
 
 export const spaireClient = () => {
 	return {
@@ -17,7 +15,7 @@ export const spaireClient = () => {
 				checkoutEmbed: async (
 					data: Omit<CheckoutParams, "redirect" | "embedOrigin">,
 					fetchOptions?: BetterFetchOption,
-				): Promise<PolarEmbedCheckoutType> => {
+				): Promise<SpaireEmbedCheckoutType> => {
 					const res = await $fetch("/checkout", {
 						method: "POST",
 						body: {
@@ -40,12 +38,10 @@ export const spaireClient = () => {
 							| "dark"
 							| undefined) ?? "light";
 
-					return await PolarEmbedCheckout.create(checkout.url, theme);
+					return await SpaireEmbedCheckout.create(checkout.url, theme);
 				},
 			};
 		},
 	} satisfies BetterAuthClientPlugin;
 };
 
-/** @deprecated Use spaireClient instead */
-export const polarClient = spaireClient;

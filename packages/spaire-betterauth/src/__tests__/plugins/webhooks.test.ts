@@ -1,12 +1,12 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { webhooks } from "../../plugins/webhooks";
-import { createMockPolarClient } from "../utils/mocks";
+import { createMockSpaireClient } from "../utils/mocks";
 
-vi.mock("@polar-sh/adapter-utils", () => ({
+vi.mock("@spaire/adapter-utils", () => ({
 	handleWebhookPayload: vi.fn(),
 }));
 
-vi.mock("@polar-sh/sdk/webhooks", () => ({
+vi.mock("@spaire/sdk/webhooks", () => ({
 	validateEvent: vi.fn(),
 }));
 
@@ -27,20 +27,20 @@ vi.mock("better-auth/api", () => ({
 }));
 
 const { handleWebhookPayload } = (await vi.importMock(
-	"@polar-sh/adapter-utils",
+	"@spaire/adapter-utils",
 )) as any;
 const { validateEvent } = (await vi.importMock(
-	"@polar-sh/sdk/webhooks",
+	"@spaire/sdk/webhooks",
 )) as any;
 const { APIError, createAuthEndpoint } = (await vi.importMock(
 	"better-auth/api",
 )) as any;
 
 describe("webhooks plugin", () => {
-	let mockClient: ReturnType<typeof createMockPolarClient>;
+	let mockClient: ReturnType<typeof createMockSpaireClient>;
 
 	beforeEach(() => {
-		mockClient = createMockPolarClient();
+		mockClient = createMockSpaireClient();
 		vi.clearAllMocks();
 	});
 
@@ -53,7 +53,7 @@ describe("webhooks plugin", () => {
 			const plugin = webhooks(options);
 			const endpoints = plugin(mockClient);
 
-			expect(endpoints).toHaveProperty("polarWebhooks");
+			expect(endpoints).toHaveProperty("spaireWebhooks");
 		});
 
 		it("should create webhooks plugin with all handlers", () => {
@@ -76,7 +76,7 @@ describe("webhooks plugin", () => {
 			const plugin = webhooks(options);
 			const endpoints = plugin(mockClient);
 
-			expect(endpoints).toHaveProperty("polarWebhooks");
+			expect(endpoints).toHaveProperty("spaireWebhooks");
 		});
 
 		it("should configure endpoint with correct path and options", () => {
@@ -85,7 +85,7 @@ describe("webhooks plugin", () => {
 			plugin(mockClient);
 
 			expect(createAuthEndpoint).toHaveBeenCalledWith(
-				"/polar/webhooks",
+				"/spaire/webhooks",
 				expect.objectContaining({
 					method: "POST",
 					metadata: { isAction: false },
@@ -109,7 +109,7 @@ describe("webhooks plugin", () => {
 
 			const plugin = webhooks(options);
 			const endpoints = plugin(mockClient);
-			handler = endpoints.polarWebhooks.handler;
+			handler = endpoints.spaireWebhooks.handler;
 
 			// Create a mock request with proper headers
 			const headers = new Headers({
@@ -179,7 +179,7 @@ describe("webhooks plugin", () => {
 			const options = { secret: "" };
 			const plugin = webhooks(options);
 			const endpoints = plugin(mockClient);
-			const noSecretHandler = endpoints.polarWebhooks.handler;
+			const noSecretHandler = endpoints.spaireWebhooks.handler;
 
 			const ctx = {
 				request: mockRequest,
@@ -187,7 +187,7 @@ describe("webhooks plugin", () => {
 			};
 
 			await expect(noSecretHandler(ctx)).rejects.toThrow(
-				"Polar webhook secret not found",
+				"Spaire webhook secret not found",
 			);
 		});
 
@@ -246,7 +246,7 @@ describe("webhooks plugin", () => {
 				"Webhook error: See server logs for more information.",
 			);
 			expect(ctx.context.logger.error).toHaveBeenCalledWith(
-				"Polar webhook failed. Error: Handler processing failed",
+				"Spaire webhook failed. Error: Handler processing failed",
 			);
 		});
 
@@ -264,7 +264,7 @@ describe("webhooks plugin", () => {
 				"Webhook error: See server logs for more information.",
 			);
 			expect(ctx.context.logger.error).toHaveBeenCalledWith(
-				"Polar webhook failed. Error: Unknown error",
+				"Spaire webhook failed. Error: Unknown error",
 			);
 		});
 
@@ -294,7 +294,7 @@ describe("webhooks plugin", () => {
 
 			const plugin = webhooks(mockHandlers);
 			const endpoints = plugin(mockClient);
-			const handlerWithAllOptions = endpoints.polarWebhooks.handler;
+			const handlerWithAllOptions = endpoints.spaireWebhooks.handler;
 
 			const mockEvent = { type: "checkout.created", data: {} };
 			vi.mocked(validateEvent).mockReturnValue(mockEvent);

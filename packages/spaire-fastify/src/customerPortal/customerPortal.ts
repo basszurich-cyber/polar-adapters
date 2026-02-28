@@ -1,4 +1,4 @@
-import { Polar } from "@polar-sh/sdk";
+import { Spaire } from "@spaire/sdk";
 import type { FastifyReply, FastifyRequest, RouteHandler } from "fastify";
 export interface CustomerPortalConfig {
 	accessToken?: string;
@@ -13,7 +13,7 @@ export const CustomerPortal = ({
 	getCustomerId,
 	returnUrl,
 }: CustomerPortalConfig): RouteHandler => {
-	const polar = new Polar({
+	const spaire = new Spaire({
 		accessToken: accessToken ?? process.env["SPAIRE_ACCESS_TOKEN"],
 		server,
 	});
@@ -28,7 +28,7 @@ export const CustomerPortal = ({
 		}
 
 		try {
-			const result = await polar.customerSessions.create({
+			const result = await spaire.customerSessions.create({
 				customerId,
 				returnUrl: retUrl ? decodeURI(retUrl.toString()) : undefined,
 			});

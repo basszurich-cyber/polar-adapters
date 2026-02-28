@@ -1,12 +1,12 @@
 // Define mock values at the top level
-const mockCustomerPortalUrl = "https://polar.sh/portal/session-123";
+const mockCustomerPortalUrl = "https://spaire.sh/portal/session-123";
 const mockCustomerSessionCreate = vi.fn(() => ({
 	customerPortalUrl: mockCustomerPortalUrl,
 }));
 
 // Mock the module before any imports
-vi.mock("@polar-sh/sdk", async (importOriginal) => {
-	class Polar {
+vi.mock("@spaire/sdk", async (importOriginal) => {
+	class Spaire {
 		customerSessions = {
 			create: mockCustomerSessionCreate,
 		};
@@ -14,7 +14,7 @@ vi.mock("@polar-sh/sdk", async (importOriginal) => {
 
 	return {
 		...(await importOriginal()),
-		Polar,
+		Spaire,
 	};
 });
 
@@ -79,7 +79,7 @@ describe("CustomerPortal", () => {
 			});
 			expect(response.status).toBe(302);
 			expect(response.headers.get("location")).toBe(
-				"https://polar.sh/portal/session-123",
+				"https://spaire.sh/portal/session-123",
 			);
 		});
 

@@ -7,8 +7,8 @@ const mockSessionCreate = vi
 const mockCheckoutCreate = vi.fn(() => ({ url: mockCheckoutUrl }));
 
 // Mock the module before any imports
-vi.mock("@polar-sh/sdk", async (importOriginal) => {
-	class Polar {
+vi.mock("@spaire/sdk", async (importOriginal) => {
+	class Spaire {
 		customerSessions = {
 			create: mockSessionCreate,
 		};
@@ -20,7 +20,7 @@ vi.mock("@polar-sh/sdk", async (importOriginal) => {
 
 	return {
 		...(await importOriginal()),
-		Polar,
+		Spaire,
 	};
 });
 

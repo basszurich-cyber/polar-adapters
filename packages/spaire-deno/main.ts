@@ -2,11 +2,11 @@ import {
 	type WebhooksConfig,
 	handleWebhookPayload,
 } from "npm:@spaire/adapter-utils@0.4.3";
-import { Polar } from "npm:@polar-sh/sdk@0.36.2";
+import { Spaire } from "npm:@spaire/sdk@0.36.2";
 import {
 	WebhookVerificationError,
 	validateEvent,
-} from "npm:@polar-sh/sdk@0.36.2/webhooks";
+} from "npm:@spaire/sdk@0.36.2/webhooks";
 
 export interface CheckoutConfig {
 	accessToken?: string;
@@ -25,7 +25,7 @@ export const Checkout = ({
 	theme,
 	includeCheckoutId = true,
 }: CheckoutConfig): ((request: Request) => Promise<Response>) => {
-	const polar = new Polar({
+	const spaire = new Spaire({
 		accessToken: accessToken ?? Deno.env.get("SPAIRE_ACCESS_TOKEN"),
 		server,
 	});
@@ -53,7 +53,7 @@ export const Checkout = ({
 		const retUrl = returnUrl ? new URL(returnUrl) : undefined;
 
 		try {
-			const result = await polar.checkouts.create({
+			const result = await spaire.checkouts.create({
 				products,
 				successUrl: success ? decodeURI(success.toString()) : undefined,
 				returnUrl: retUrl ? decodeURI(retUrl.toString()) : undefined,
@@ -111,7 +111,7 @@ export const CustomerPortal = ({
 	getCustomerId,
 	returnUrl,
 }: CustomerPortalConfig): ((request: Request) => Promise<Response>) => {
-	const polar = new Polar({
+	const spaire = new Spaire({
 		accessToken: accessToken ?? Deno.env.get("SPAIRE_ACCESS_TOKEN"),
 		server,
 	});
@@ -129,7 +129,7 @@ export const CustomerPortal = ({
 		}
 
 		try {
-			const result = await polar.customerSessions.create({
+			const result = await spaire.customerSessions.create({
 				customerId,
 				returnUrl: retUrl ? decodeURI(retUrl.toString()) : undefined,
 			});
