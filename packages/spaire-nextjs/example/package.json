@@ -10,7 +10,7 @@
 	},
 	"dependencies": {
 		"@spaire/nextjs": "workspace:*",
-		"@spaire/sdk": "^0.36.2",
+		"@spaire/sdk": "^0.45.1",
 		"better-auth": "1.2.7",
 		"better-sqlite3": "^11.8.1",
 		"next": "14.2.28",
