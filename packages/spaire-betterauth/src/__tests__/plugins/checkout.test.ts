@@ -4,7 +4,7 @@ import { mockApiError, mockApiResponse } from "../utils/helpers";
 import {
 	createMockBetterAuthContext,
 	createMockCheckout,
-	createMockPolarClient,
+	createMockSpaireClient,
 } from "../utils/mocks";
 
 vi.mock("better-auth/api", () => ({
@@ -35,11 +35,11 @@ const { createAuthEndpoint } = (await vi.importMock(
 )) as any;
 
 describe("checkout plugin", () => {
-	let mockClient: ReturnType<typeof createMockPolarClient>;
+	let mockClient: ReturnType<typeof createMockSpaireClient>;
 	let mockContext: ReturnType<typeof createMockBetterAuthContext>;
 
 	beforeEach(() => {
-		mockClient = createMockPolarClient();
+		mockClient = createMockSpaireClient();
 		mockContext = createMockBetterAuthContext();
 		vi.clearAllMocks();
 	});
@@ -312,7 +312,7 @@ describe("checkout plugin", () => {
 			);
 		});
 
-		it("should handle API errors from Polar", async () => {
+		it("should handle API errors from Spaire", async () => {
 			vi.mocked(getSessionFromCtx).mockResolvedValue({
 				user: { id: "user-123" },
 			});
@@ -328,14 +328,14 @@ describe("checkout plugin", () => {
 
 			await expect(handler(ctx)).rejects.toThrow("Checkout creation failed");
 			expect(ctx.context.logger.error).toHaveBeenCalledWith(
-				expect.stringContaining("Polar checkout creation failed"),
+				expect.stringContaining("Spaire checkout creation failed"),
 			);
 		});
 
 		it("should handle success URL construction", async () => {
 			const mockCheckout = {
 				...createMockCheckout(),
-				url: "https://polar.sh/checkout/test-123",
+				url: "https://spaire.sh/checkout/test-123",
 			};
 			vi.mocked(getSessionFromCtx).mockResolvedValue({
 				user: { id: "user-123" },

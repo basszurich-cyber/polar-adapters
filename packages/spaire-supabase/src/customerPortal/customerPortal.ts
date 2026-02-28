@@ -1,4 +1,4 @@
-import { Polar } from "@polar-sh/sdk";
+import { Spaire } from "@spaire/sdk";
 
 export interface CustomerPortalConfig {
 	accessToken: string;
@@ -13,7 +13,7 @@ export const CustomerPortal = ({
 	getCustomerId,
 	returnUrl,
 }: CustomerPortalConfig) => {
-	const polar = new Polar({
+	const spaire = new Spaire({
 		accessToken,
 		server,
 	});
@@ -31,7 +31,7 @@ export const CustomerPortal = ({
 		}
 
 		try {
-			const result = await polar.customerSessions.create({
+			const result = await spaire.customerSessions.create({
 				customerId,
 				returnUrl: retUrl ? decodeURI(retUrl.toString()) : undefined,
 			});

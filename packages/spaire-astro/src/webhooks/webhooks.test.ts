@@ -1,4 +1,4 @@
-vi.mock("@polar-sh/sdk/webhooks", async (importOriginal) => {
+vi.mock("@spaire/sdk/webhooks", async (importOriginal) => {
 	return {
 		...(await importOriginal()),
 		WebhookVerificationError: vi.fn(),

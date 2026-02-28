@@ -1,4 +1,4 @@
-// Mock Polar SDK
+// Mock Spaire SDK
 const mockCheckoutUrl = "https://mock-checkout-url.com";
 const mockCustomerPortalUrl = "https://mock-customer-portal-url.com";
 

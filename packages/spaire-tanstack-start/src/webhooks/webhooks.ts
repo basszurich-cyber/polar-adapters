@@ -5,7 +5,7 @@ import {
 import {
 	WebhookVerificationError,
 	validateEvent,
-} from "@polar-sh/sdk/webhooks";
+} from "@spaire/sdk/webhooks";
 // @ts-expect-error - TODO: fix this
 import type { StartAPIMethodCallback } from "@tanstack/react-start/api";
 

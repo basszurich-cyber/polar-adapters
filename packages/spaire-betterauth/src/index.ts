@@ -8,8 +8,6 @@ import {
 import type { SpaireEndpoints, SpaireOptions } from "./types";
 
 export { spaireClient } from "./client";
-/** @deprecated Use spaireClient instead */
-export { spaireClient as polarClient } from "./client";
 
 export * from "./plugins/portal";
 export * from "./plugins/checkout";
@@ -52,5 +50,3 @@ export const spaire = <O extends SpaireOptions>(options: O) => {
 	} satisfies BetterAuthPlugin;
 };
 
-/** @deprecated Use spaire instead */
-export const polar = spaire;

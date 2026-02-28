@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { usage } from "../../plugins/usage";
 import { mockApiError } from "../utils/helpers";
-import { createMockPolarClient } from "../utils/mocks";
+import { createMockSpaireClient } from "../utils/mocks";
 
 vi.mock("better-auth/api", () => ({
 	APIError: class APIError extends Error {
@@ -24,10 +24,10 @@ const { APIError, createAuthEndpoint, sessionMiddleware } =
 	(await vi.importMock("better-auth/api")) as any;
 
 describe("usage plugin", () => {
-	let mockClient: ReturnType<typeof createMockPolarClient>;
+	let mockClient: ReturnType<typeof createMockSpaireClient>;
 
 	beforeEach(() => {
-		mockClient = createMockPolarClient();
+		mockClient = createMockSpaireClient();
 		vi.clearAllMocks();
 	});
 
@@ -193,7 +193,7 @@ describe("usage plugin", () => {
 
 			await expect(handler(ctx)).rejects.toThrow("Meters list failed");
 			expect(ctx.context.logger.error).toHaveBeenCalledWith(
-				expect.stringContaining("Polar meters list failed"),
+				expect.stringContaining("Spaire meters list failed"),
 			);
 		});
 
@@ -380,7 +380,7 @@ describe("usage plugin", () => {
 
 			await expect(handler(ctx)).rejects.toThrow("Ingestion failed");
 			expect(ctx.context.logger.error).toHaveBeenCalledWith(
-				expect.stringContaining("Polar ingestion failed"),
+				expect.stringContaining("Spaire ingestion failed"),
 			);
 		});
 
@@ -402,7 +402,7 @@ describe("usage plugin", () => {
 
 			await expect(handler(ctx)).rejects.toThrow("Ingestion failed");
 			expect(ctx.context.logger.error).toHaveBeenCalledWith(
-				"Polar ingestion failed. Error: Network timeout",
+				"Spaire ingestion failed. Error: Network timeout",
 			);
 		});
 	});

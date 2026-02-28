@@ -1,5 +1,5 @@
 // Mock the modules before any imports
-vi.mock("@polar-sh/sdk/webhooks", () => {
+vi.mock("@spaire/sdk/webhooks", () => {
 	class WebhookVerificationError extends Error {
 		constructor(message: string) {
 			super(message);
@@ -16,20 +16,20 @@ vi.mock("@polar-sh/sdk/webhooks", () => {
 	};
 });
 
-vi.mock("@polar-sh/adapter-utils", async (importOriginal) => {
+vi.mock("@spaire/adapter-utils", async (importOriginal) => {
 	const actual =
-		await importOriginal<typeof import("@polar-sh/adapter-utils")>();
+		await importOriginal<typeof import("@spaire/adapter-utils")>();
 	return {
 		...actual,
 		handleWebhookPayload: vi.fn(async () => {}),
 	};
 });
 
-import { handleWebhookPayload } from "@polar-sh/adapter-utils";
+import { handleWebhookPayload } from "@spaire/adapter-utils";
 import {
 	WebhookVerificationError,
 	validateEvent,
-} from "@polar-sh/sdk/webhooks";
+} from "@spaire/sdk/webhooks";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { Webhooks } from "./webhooks";
 

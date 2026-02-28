@@ -3,8 +3,8 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const mockCustomerSessionCreate = vi.fn();
 
-vi.mock("@polar-sh/sdk", () => ({
-	Polar: vi.fn().mockImplementation(() => ({
+vi.mock("@spaire/sdk", () => ({
+	Spaire: vi.fn().mockImplementation(() => ({
 		customerSessions: {
 			create: mockCustomerSessionCreate,
 		},
@@ -69,7 +69,7 @@ describe("CustomerPortal", () => {
 		it("should create customer session and redirect when customerId is valid", async () => {
 			const getCustomerId = vi.fn().mockResolvedValue("cust_123");
 			mockCustomerSessionCreate.mockResolvedValue({
-				customerPortalUrl: "https://polar.sh/portal/session_123",
+				customerPortalUrl: "https://spaire.sh/portal/session_123",
 			});
 
 			const portal = CustomerPortal({
@@ -87,7 +87,7 @@ describe("CustomerPortal", () => {
 			});
 			expect(response.status).toBe(307);
 			expect(response.headers.get("location")).toBe(
-				"https://polar.sh/portal/session_123",
+				"https://spaire.sh/portal/session_123",
 			);
 		});
 
@@ -120,7 +120,7 @@ describe("CustomerPortal", () => {
 			});
 
 			mockCustomerSessionCreate.mockResolvedValue({
-				customerPortalUrl: "https://polar.sh/portal/session_456",
+				customerPortalUrl: "https://spaire.sh/portal/session_456",
 			});
 
 			const portal = CustomerPortal({

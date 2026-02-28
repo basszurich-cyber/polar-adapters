@@ -1,9 +1,9 @@
-import type { Polar } from "@polar-sh/sdk";
-import type { Customer } from "@polar-sh/sdk/models/components/customer.js";
+import type { Spaire } from "@spaire/sdk";
+import type { Customer } from "@spaire/sdk/models/components/customer.js";
 import type { User } from "better-auth";
 import { vi } from "vitest";
 
-export const createMockPolarClient = (): Polar =>
+export const createMockSpaireClient = (): Spaire =>
 	({
 		products: {
 			get: vi.fn(),
@@ -112,7 +112,7 @@ export const createMockProduct = () => ({
 
 export const createMockCheckout = () => ({
 	id: "checkout-123",
-	url: "https://polar.sh/checkout/checkout-123",
+	url: "https://spaire.sh/checkout/checkout-123",
 	customerId: "customer-123",
 	customerEmail: "test@example.com",
 	productId: "product-123",

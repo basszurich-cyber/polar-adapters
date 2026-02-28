@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "polar-nuxt-playground",
+  "name": "spaire-nuxt-playground",
   "type": "module",
   "scripts": {
     "dev": "nuxi dev",

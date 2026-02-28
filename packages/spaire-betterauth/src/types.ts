@@ -1,4 +1,4 @@
-import type { Polar } from "@polar-sh/sdk";
+import type { Spaire } from "@spaire/sdk";
 
 import type { UnionToIntersection, User } from "better-auth";
 import type { checkout } from "./plugins/checkout";
@@ -23,24 +23,15 @@ export type SpairePlugin =
 	| ReturnType<typeof portal>
 	| ReturnType<typeof webhooks>;
 
-/** @deprecated Use SpairePlugin instead */
-export type PolarPlugin = SpairePlugin;
-
 export type SpairePlugins = [SpairePlugin, ...SpairePlugin[]];
-
-/** @deprecated Use SpairePlugins instead */
-export type PolarPlugins = SpairePlugins;
 
 export type SpaireEndpoints = UnionToIntersection<ReturnType<SpairePlugin>>;
 
-/** @deprecated Use SpaireEndpoints instead */
-export type PolarEndpoints = SpaireEndpoints;
-
 export interface SpaireOptions {
 	/**
-	 * Spaire Client (Polar SDK)
+	 * Spaire SDK Client
 	 */
-	client: Polar;
+	client: Spaire;
 	/**
 	 * Enable customer creation when a user signs up
 	 */
@@ -65,5 +56,3 @@ export interface SpaireOptions {
 	use: SpairePlugins;
 }
 
-/** @deprecated Use SpaireOptions instead */
-export type PolarOptions = SpaireOptions;

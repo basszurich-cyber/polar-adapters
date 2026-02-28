@@ -12,7 +12,7 @@ export default defineConfig({
 	},
 	resolve: {
 		alias: {
-			'@': '/Users/ewidlund/dev/polar-adapters/packages/polar-betterauth/src',
+			'@': '/Users/ewidlund/dev/polar-adapters/packages/spaire-betterauth/src',
 		},
 	},
 })

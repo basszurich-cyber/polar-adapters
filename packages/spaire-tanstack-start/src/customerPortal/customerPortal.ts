@@ -1,4 +1,4 @@
-import { Polar } from "@polar-sh/sdk";
+import { Spaire } from "@spaire/sdk";
 // @ts-expect-error - TODO: fix this
 import type { StartAPIMethodCallback } from "@tanstack/react-start/api";
 
@@ -15,7 +15,7 @@ export const CustomerPortal = <TPath extends string = string>({
 	getCustomerId,
 	returnUrl,
 }: CustomerPortalConfig): StartAPIMethodCallback<TPath> => {
-	const polar = new Polar({
+	const spaire = new Spaire({
 		accessToken,
 		server,
 	});
@@ -34,7 +34,7 @@ export const CustomerPortal = <TPath extends string = string>({
 		}
 
 		try {
-			const result = await polar.customerSessions.create({
+			const result = await spaire.customerSessions.create({
 				customerId,
 				returnUrl: retUrl ? decodeURI(retUrl.toString()) : undefined,
 			});

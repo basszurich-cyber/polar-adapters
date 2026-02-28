@@ -1,4 +1,4 @@
-import type { Polar } from "@polar-sh/sdk";
+import type { Spaire } from "@spaire/sdk";
 import { APIError, getSessionFromCtx } from "better-auth/api";
 import { createAuthEndpoint } from "better-auth/plugins";
 import { z } from "zod";
@@ -51,7 +51,7 @@ export type CheckoutParams = z.infer<typeof CheckoutParams>;
 
 export const checkout =
 	(checkoutOptions: CheckoutOptions = {}) =>
-	(polar: Polar) => {
+	(spaire: Spaire) => {
 		return {
 			checkout: createAuthEndpoint(
 				"/checkout",
@@ -94,7 +94,7 @@ export const checkout =
 					}
 
 					try {
-						const checkout = await polar.checkouts.create({
+						const checkout = await spaire.checkouts.create({
 							externalCustomerId: session?.user.id,
 							products: productIds,
 							successUrl: checkoutOptions.successUrl
@@ -134,7 +134,7 @@ export const checkout =
 					} catch (e: unknown) {
 						if (e instanceof Error) {
 							ctx.context.logger.error(
-								`Polar checkout creation failed. Error: ${e.message}`,
+								`Spaire checkout creation failed. Error: ${e.message}`,
 							);
 						}
 

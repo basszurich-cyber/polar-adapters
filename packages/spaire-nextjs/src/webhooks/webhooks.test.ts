@@ -1,11 +1,11 @@
 import { NextRequest } from "next/server";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-vi.mock("@polar-sh/adapter-utils", () => ({
+vi.mock("@spaire/adapter-utils", () => ({
 	handleWebhookPayload: vi.fn(),
 }));
 
-vi.mock("@polar-sh/sdk/webhooks", () => ({
+vi.mock("@spaire/sdk/webhooks", () => ({
 	validateEvent: vi.fn(),
 	WebhookVerificationError: class WebhookVerificationError extends Error {
 		constructor(message: string) {
@@ -15,8 +15,8 @@ vi.mock("@polar-sh/sdk/webhooks", () => ({
 	},
 }));
 
-import { handleWebhookPayload } from "@polar-sh/adapter-utils";
-import { validateEvent } from "@polar-sh/sdk/webhooks";
+import { handleWebhookPayload } from "@spaire/adapter-utils";
+import { validateEvent } from "@spaire/sdk/webhooks";
 import { Webhooks } from "./webhooks";
 
 const mockHandleWebhookPayload = vi.mocked(handleWebhookPayload);
@@ -110,7 +110,7 @@ describe("Webhooks", () => {
 
 		it("should return 403 for webhook verification errors", async () => {
 			const { WebhookVerificationError } = await import(
-				"@polar-sh/sdk/webhooks"
+				"@spaire/sdk/webhooks"
 			);
 			mockValidateEvent.mockImplementation(() => {
 				throw new WebhookVerificationError("Invalid signature");

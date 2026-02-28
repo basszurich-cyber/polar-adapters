@@ -1,32 +1,32 @@
 import { handleWebhookPayload } from "@spaire/adapter-utils";
-import type { Polar } from "@polar-sh/sdk";
-import type { WebhookBenefitCreatedPayload } from "@polar-sh/sdk/models/components/webhookbenefitcreatedpayload";
-import type { WebhookBenefitGrantCreatedPayload } from "@polar-sh/sdk/models/components/webhookbenefitgrantcreatedpayload";
-import type { WebhookBenefitGrantRevokedPayload } from "@polar-sh/sdk/models/components/webhookbenefitgrantrevokedpayload";
-import type { WebhookBenefitGrantUpdatedPayload } from "@polar-sh/sdk/models/components/webhookbenefitgrantupdatedpayload";
-import type { WebhookBenefitUpdatedPayload } from "@polar-sh/sdk/models/components/webhookbenefitupdatedpayload";
-import type { WebhookCheckoutCreatedPayload } from "@polar-sh/sdk/models/components/webhookcheckoutcreatedpayload";
-import type { WebhookCheckoutUpdatedPayload } from "@polar-sh/sdk/models/components/webhookcheckoutupdatedpayload";
-import type { WebhookCustomerCreatedPayload } from "@polar-sh/sdk/models/components/webhookcustomercreatedpayload";
-import type { WebhookCustomerDeletedPayload } from "@polar-sh/sdk/models/components/webhookcustomerdeletedpayload";
-import type { WebhookCustomerStateChangedPayload } from "@polar-sh/sdk/models/components/webhookcustomerstatechangedpayload";
-import type { WebhookCustomerUpdatedPayload } from "@polar-sh/sdk/models/components/webhookcustomerupdatedpayload";
-import type { WebhookOrderCreatedPayload } from "@polar-sh/sdk/models/components/webhookordercreatedpayload";
-import type { WebhookOrderPaidPayload } from "@polar-sh/sdk/models/components/webhookorderpaidpayload";
-import type { WebhookOrderRefundedPayload } from "@polar-sh/sdk/models/components/webhookorderrefundedpayload";
-import type { WebhookOrderUpdatedPayload } from "@polar-sh/sdk/models/components/webhookorderupdatedpayload";
-import type { WebhookOrganizationUpdatedPayload } from "@polar-sh/sdk/models/components/webhookorganizationupdatedpayload";
-import type { WebhookProductCreatedPayload } from "@polar-sh/sdk/models/components/webhookproductcreatedpayload";
-import type { WebhookProductUpdatedPayload } from "@polar-sh/sdk/models/components/webhookproductupdatedpayload";
-import type { WebhookRefundCreatedPayload } from "@polar-sh/sdk/models/components/webhookrefundcreatedpayload";
-import type { WebhookRefundUpdatedPayload } from "@polar-sh/sdk/models/components/webhookrefundupdatedpayload";
-import type { WebhookSubscriptionActivePayload } from "@polar-sh/sdk/models/components/webhooksubscriptionactivepayload";
-import type { WebhookSubscriptionCanceledPayload } from "@polar-sh/sdk/models/components/webhooksubscriptioncanceledpayload";
-import type { WebhookSubscriptionCreatedPayload } from "@polar-sh/sdk/models/components/webhooksubscriptioncreatedpayload";
-import type { WebhookSubscriptionRevokedPayload } from "@polar-sh/sdk/models/components/webhooksubscriptionrevokedpayload";
-import type { WebhookSubscriptionUncanceledPayload } from "@polar-sh/sdk/models/components/webhooksubscriptionuncanceledpayload";
-import type { WebhookSubscriptionUpdatedPayload } from "@polar-sh/sdk/models/components/webhooksubscriptionupdatedpayload";
-import { validateEvent } from "@polar-sh/sdk/webhooks";
+import type { Spaire } from "@spaire/sdk";
+import type { WebhookBenefitCreatedPayload } from "@spaire/sdk/models/components/webhookbenefitcreatedpayload";
+import type { WebhookBenefitGrantCreatedPayload } from "@spaire/sdk/models/components/webhookbenefitgrantcreatedpayload";
+import type { WebhookBenefitGrantRevokedPayload } from "@spaire/sdk/models/components/webhookbenefitgrantrevokedpayload";
+import type { WebhookBenefitGrantUpdatedPayload } from "@spaire/sdk/models/components/webhookbenefitgrantupdatedpayload";
+import type { WebhookBenefitUpdatedPayload } from "@spaire/sdk/models/components/webhookbenefitupdatedpayload";
+import type { WebhookCheckoutCreatedPayload } from "@spaire/sdk/models/components/webhookcheckoutcreatedpayload";
+import type { WebhookCheckoutUpdatedPayload } from "@spaire/sdk/models/components/webhookcheckoutupdatedpayload";
+import type { WebhookCustomerCreatedPayload } from "@spaire/sdk/models/components/webhookcustomercreatedpayload";
+import type { WebhookCustomerDeletedPayload } from "@spaire/sdk/models/components/webhookcustomerdeletedpayload";
+import type { WebhookCustomerStateChangedPayload } from "@spaire/sdk/models/components/webhookcustomerstatechangedpayload";
+import type { WebhookCustomerUpdatedPayload } from "@spaire/sdk/models/components/webhookcustomerupdatedpayload";
+import type { WebhookOrderCreatedPayload } from "@spaire/sdk/models/components/webhookordercreatedpayload";
+import type { WebhookOrderPaidPayload } from "@spaire/sdk/models/components/webhookorderpaidpayload";
+import type { WebhookOrderRefundedPayload } from "@spaire/sdk/models/components/webhookorderrefundedpayload";
+import type { WebhookOrderUpdatedPayload } from "@spaire/sdk/models/components/webhookorderupdatedpayload";
+import type { WebhookOrganizationUpdatedPayload } from "@spaire/sdk/models/components/webhookorganizationupdatedpayload";
+import type { WebhookProductCreatedPayload } from "@spaire/sdk/models/components/webhookproductcreatedpayload";
+import type { WebhookProductUpdatedPayload } from "@spaire/sdk/models/components/webhookproductupdatedpayload";
+import type { WebhookRefundCreatedPayload } from "@spaire/sdk/models/components/webhookrefundcreatedpayload";
+import type { WebhookRefundUpdatedPayload } from "@spaire/sdk/models/components/webhookrefundupdatedpayload";
+import type { WebhookSubscriptionActivePayload } from "@spaire/sdk/models/components/webhooksubscriptionactivepayload";
+import type { WebhookSubscriptionCanceledPayload } from "@spaire/sdk/models/components/webhooksubscriptioncanceledpayload";
+import type { WebhookSubscriptionCreatedPayload } from "@spaire/sdk/models/components/webhooksubscriptioncreatedpayload";
+import type { WebhookSubscriptionRevokedPayload } from "@spaire/sdk/models/components/webhooksubscriptionrevokedpayload";
+import type { WebhookSubscriptionUncanceledPayload } from "@spaire/sdk/models/components/webhooksubscriptionuncanceledpayload";
+import type { WebhookSubscriptionUpdatedPayload } from "@spaire/sdk/models/components/webhooksubscriptionupdatedpayload";
+import { validateEvent } from "@spaire/sdk/webhooks";
 import { APIError, createAuthEndpoint } from "better-auth/api";
 
 export interface WebhooksOptions {
@@ -166,7 +166,7 @@ export interface WebhooksOptions {
 	) => Promise<void>;
 }
 
-export const webhooks = (options: WebhooksOptions) => (_spaire: Polar) => {
+export const webhooks = (options: WebhooksOptions) => _spaire: Spaire) => {
 	return {
 		spaireWebhooks: createAuthEndpoint(
 			"/spaire/webhooks",

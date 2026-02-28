@@ -1,4 +1,4 @@
-import { Polar } from "@polar-sh/sdk";
+import { Spaire } from "@spaire/sdk";
 import { createError, getValidatedQuery, sendRedirect } from "h3";
 import type { H3Event } from "h3";
 import { z } from "zod";
@@ -68,9 +68,9 @@ export const Checkout = ({
 
 			const retUrl = returnUrl ? new URL(returnUrl) : undefined;
 
-			const polar = new Polar({ accessToken, server });
+			const spaire = new Spaire({ accessToken, server });
 
-			const result = await polar.checkouts.create({
+			const result = await spaire.checkouts.create({
 				products,
 				successUrl: success ? decodeURI(success.toString()) : undefined,
 				customerId,
