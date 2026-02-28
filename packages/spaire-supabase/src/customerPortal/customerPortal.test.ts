@@ -1,5 +1,5 @@
 // Define mock values at the top level
-const mockCustomerPortalUrl = "https://spaire.sh/portal/session-123";
+const mockCustomerPortalUrl = "https://spairehq.com/portal/session-123";
 const mockCustomerSessionCreate = vi.fn(() => ({
 	customerPortalUrl: mockCustomerPortalUrl,
 }));
@@ -79,7 +79,7 @@ describe("CustomerPortal", () => {
 			});
 			expect(response.status).toBe(302);
 			expect(response.headers.get("location")).toBe(
-				"https://spaire.sh/portal/session-123",
+				"https://spairehq.com/portal/session-123",
 			);
 		});
 
