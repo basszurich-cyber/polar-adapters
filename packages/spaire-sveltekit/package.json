@@ -49,7 +49,7 @@
     "vite-plugin-dts": "^3.0.0"
   },
   "dependencies": {
-    "@spaire/adapter-utils": "workspace:*",
+    "@spaire/adapter-utils": "^1.0.1",
     "@spaire/sdk": "^0.45.1"
   }
 }

@@ -50,7 +50,7 @@
   ],
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@spaire/adapter-utils": "workspace:*",
+    "@spaire/adapter-utils": "^1.0.1",
     "@spaire/sdk": "^0.45.1",
     "@sindresorhus/tsconfig": "^7.0.0",
     "@types/node": "^20.0.0",
