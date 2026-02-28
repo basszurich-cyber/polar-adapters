@@ -112,7 +112,7 @@ export const createMockProduct = () => ({
 
 export const createMockCheckout = () => ({
 	id: "checkout-123",
-	url: "https://spaire.sh/checkout/checkout-123",
+	url: "https://spairehq.com/checkout/checkout-123",
 	customerId: "customer-123",
 	customerEmail: "test@example.com",
 	productId: "product-123",

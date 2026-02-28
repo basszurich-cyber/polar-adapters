@@ -86,7 +86,7 @@ describe("portal plugin", () => {
 		it("should create customer portal session and return URL", async () => {
 			const mockSession = {
 				token: "session-token-123",
-				customerPortalUrl: "https://spaire.sh/portal/session-123",
+				customerPortalUrl: "https://spairehq.com/portal/session-123",
 			};
 
 			vi.mocked(mockClient.customerSessions.create).mockResolvedValue(
@@ -107,7 +107,7 @@ describe("portal plugin", () => {
 			});
 
 			expect(ctx.json).toHaveBeenCalledWith({
-				url: "https://spaire.sh/portal/session-123",
+				url: "https://spairehq.com/portal/session-123",
 				redirect: true,
 			});
 		});

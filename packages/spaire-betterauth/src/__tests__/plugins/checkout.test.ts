@@ -335,7 +335,7 @@ describe("checkout plugin", () => {
 		it("should handle success URL construction", async () => {
 			const mockCheckout = {
 				...createMockCheckout(),
-				url: "https://spaire.sh/checkout/test-123",
+				url: "https://spairehq.com/checkout/test-123",
 			};
 			vi.mocked(getSessionFromCtx).mockResolvedValue({
 				user: { id: "user-123" },

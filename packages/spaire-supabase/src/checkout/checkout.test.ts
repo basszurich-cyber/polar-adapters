@@ -1,5 +1,5 @@
 // Define mock values at the top level
-const mockCheckoutUrl = "https://spaire.sh/checkout/123";
+const mockCheckoutUrl = "https://spairehq.com/checkout/123";
 const mockCheckoutCreate = vi.fn(() => ({ url: mockCheckoutUrl }));
 
 // Mock the module before any imports
@@ -132,7 +132,7 @@ describe("Checkout", () => {
 			const response = await checkout(request);
 
 			expect(response.headers.get("location")).toBe(
-				"https://spaire.sh/checkout/123?theme=dark",
+				"https://spairehq.com/checkout/123?theme=dark",
 			);
 		});
 

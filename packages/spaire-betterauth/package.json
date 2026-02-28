@@ -50,7 +50,7 @@
   ],
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@spaire/adapter-utils": "workspace:*",
+    "@spaire/adapter-utils": "^1.0.1",
     "@spaire/sdk": "^0.45.1",
     "@sindresorhus/tsconfig": "^7.0.0",
     "@types/node": "^20.0.0",
@@ -64,6 +64,6 @@
     "zod": "^3.24.2 || ^4"
   },
   "dependencies": {
-    "@spaire/checkout": "npm:@polar-sh/checkout@^0.1.14"
+    "@spaire/checkout": "^0.2.0"
   }
 }
