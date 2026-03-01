@@ -1,5 +1,11 @@
 # @polar-sh/hono
 
+## 3.0.0
+
+### Major Changes
+
+- d56921e: Change from Polar to Spaire
+
 ## 2.0.0
 
 ### Major Changes

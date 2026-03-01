@@ -1,5 +1,16 @@
 # @polar-sh/nuxt
 
+## 2.0.0
+
+### Major Changes
+
+- d56921e: Change from Polar to Spaire
+
+### Patch Changes
+
+- Updated dependencies [d56921e]
+  - @spaire/adapter-utils@2.0.0
+
 ## 1.0.0
 
 ### Major Changes

@@ -1,5 +1,11 @@
 # @polar-sh/adapter-utils
 
+## 2.0.0
+
+### Major Changes
+
+- d56921e: Change from Polar to Spaire
+
 ## 1.0.0
 
 ### Major Changes
