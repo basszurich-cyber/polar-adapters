@@ -49,4 +49,3 @@ export const spaire = <O extends SpaireOptions>(options: O) => {
 		},
 	} satisfies BetterAuthPlugin;
 };
-

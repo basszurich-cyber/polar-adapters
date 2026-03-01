@@ -3,10 +3,7 @@ import {
 	handleWebhookPayload,
 } from "@spaire/adapter-utils";
 import { Spaire } from "@spaire/sdk";
-import {
-	WebhookVerificationError,
-	validateEvent,
-} from "@spaire/sdk/webhooks";
+import { WebhookVerificationError, validateEvent } from "@spaire/sdk/webhooks";
 import type { Context } from "hono";
 
 export {

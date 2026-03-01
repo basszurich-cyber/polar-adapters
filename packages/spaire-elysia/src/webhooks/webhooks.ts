@@ -2,10 +2,7 @@ import {
 	type WebhooksConfig,
 	handleWebhookPayload,
 } from "@spaire/adapter-utils";
-import {
-	WebhookVerificationError,
-	validateEvent,
-} from "@spaire/sdk/webhooks";
+import { WebhookVerificationError, validateEvent } from "@spaire/sdk/webhooks";
 import { type Context, status } from "elysia";
 import type { InlineHandler } from "elysia/types";
 

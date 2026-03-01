@@ -38,10 +38,9 @@ export const spaireClient = () => {
 							| "dark"
 							| undefined) ?? "light";
 
-					return await SpaireEmbedCheckout.create(checkout.url, theme);
+					return await SpaireEmbedCheckout.create(checkout.url, { theme });
 				},
 			};
 		},
 	} satisfies BetterAuthClientPlugin;
 };
-

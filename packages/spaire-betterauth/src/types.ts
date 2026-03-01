@@ -55,4 +55,3 @@ export interface SpaireOptions {
 	 */
 	use: SpairePlugins;
 }
-

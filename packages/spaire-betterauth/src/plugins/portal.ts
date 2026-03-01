@@ -180,14 +180,15 @@ export const portal =
 							externalCustomerId: ctx.context.session?.user.id,
 						});
 
-						const subscriptions = await spaire.customerPortal.subscriptions.list(
-							{ customerSession: customerSession.token },
-							{
-								page: ctx.query?.page,
-								limit: ctx.query?.limit,
-								active: ctx.query?.active,
-							},
-						);
+						const subscriptions =
+							await spaire.customerPortal.subscriptions.list(
+								{ customerSession: customerSession.token },
+								{
+									page: ctx.query?.page,
+									limit: ctx.query?.limit,
+									active: ctx.query?.active,
+								},
+							);
 
 						return ctx.json(subscriptions);
 					} catch (e: unknown) {
