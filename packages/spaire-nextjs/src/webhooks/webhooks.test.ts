@@ -109,9 +109,7 @@ describe("Webhooks", () => {
 		});
 
 		it("should return 403 for webhook verification errors", async () => {
-			const { WebhookVerificationError } = await import(
-				"@spaire/sdk/webhooks"
-			);
+			const { WebhookVerificationError } = await import("@spaire/sdk/webhooks");
 			mockValidateEvent.mockImplementation(() => {
 				throw new WebhookVerificationError("Invalid signature");
 			});

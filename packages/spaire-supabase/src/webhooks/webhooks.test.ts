@@ -17,8 +17,7 @@ vi.mock("@spaire/sdk/webhooks", () => {
 });
 
 vi.mock("@spaire/adapter-utils", async (importOriginal) => {
-	const actual =
-		await importOriginal<typeof import("@spaire/adapter-utils")>();
+	const actual = await importOriginal<typeof import("@spaire/adapter-utils")>();
 	return {
 		...actual,
 		handleWebhookPayload: vi.fn(async () => {}),
@@ -26,10 +25,7 @@ vi.mock("@spaire/adapter-utils", async (importOriginal) => {
 });
 
 import { handleWebhookPayload } from "@spaire/adapter-utils";
-import {
-	WebhookVerificationError,
-	validateEvent,
-} from "@spaire/sdk/webhooks";
+import { WebhookVerificationError, validateEvent } from "@spaire/sdk/webhooks";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { Webhooks } from "./webhooks";
 

@@ -1,9 +1,6 @@
 import { handleWebhookPayload } from "@spaire/adapter-utils";
 import type { WebhooksConfig } from "@spaire/adapter-utils";
-import {
-	WebhookVerificationError,
-	validateEvent,
-} from "@spaire/sdk/webhooks";
+import { WebhookVerificationError, validateEvent } from "@spaire/sdk/webhooks";
 import type { H3Event } from "h3";
 import { createError, getHeader, readRawBody, setResponseStatus } from "h3";
 

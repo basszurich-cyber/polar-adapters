@@ -38,13 +38,14 @@ export const usage = (_usageOptions?: UsageOptions) => (spaire: Spaire) => {
 						externalCustomerId: ctx.context.session.user.id,
 					});
 
-					const customerMeters = await spaire.customerPortal.customerMeters.list(
-						{ customerSession: customerSession.token },
-						{
-							page: ctx.query?.page,
-							limit: ctx.query?.limit,
-						},
-					);
+					const customerMeters =
+						await spaire.customerPortal.customerMeters.list(
+							{ customerSession: customerSession.token },
+							{
+								page: ctx.query?.page,
+								limit: ctx.query?.limit,
+							},
+						);
 
 					return ctx.json(customerMeters);
 				} catch (e: unknown) {

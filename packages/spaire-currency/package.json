@@ -1,0 +1,32 @@
+{
+  "name": "@spaire/currency",
+  "version": "0.1.0",
+  "description": "Spaire currency formatting utilities",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsup ./src/index.ts --format esm,cjs --dts --clean"
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "tsup": "^8.5.1",
+    "typescript": "5.9.3"
+  },
+  "private": true
+}

@@ -166,7 +166,7 @@ export interface WebhooksOptions {
 	) => Promise<void>;
 }
 
-export const webhooks = (options: WebhooksOptions) => _spaire: Spaire) => {
+export const webhooks = (options: WebhooksOptions) => (_spaire: Spaire) => {
 	return {
 		spaireWebhooks: createAuthEndpoint(
 			"/spaire/webhooks",

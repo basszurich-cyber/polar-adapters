@@ -29,9 +29,7 @@ vi.mock("better-auth/api", () => ({
 const { handleWebhookPayload } = (await vi.importMock(
 	"@spaire/adapter-utils",
 )) as any;
-const { validateEvent } = (await vi.importMock(
-	"@spaire/sdk/webhooks",
-)) as any;
+const { validateEvent } = (await vi.importMock("@spaire/sdk/webhooks")) as any;
 const { APIError, createAuthEndpoint } = (await vi.importMock(
 	"better-auth/api",
 )) as any;
