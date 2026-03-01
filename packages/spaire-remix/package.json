@@ -46,5 +46,8 @@
   "dependencies": {
     "@spaire/adapter-utils": "^2.0.0",
     "@spaire/sdk": "^0.45.1"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
