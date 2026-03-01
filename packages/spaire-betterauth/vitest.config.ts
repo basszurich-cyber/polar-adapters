@@ -1,3 +1,4 @@
+import { resolve } from 'node:path'
 import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
@@ -12,7 +13,7 @@ export default defineConfig({
 	},
 	resolve: {
 		alias: {
-			'@': '/Users/ewidlund/dev/polar-adapters/packages/spaire-betterauth/src',
+			'@': resolve(__dirname, 'src'),
 		},
 	},
 })
