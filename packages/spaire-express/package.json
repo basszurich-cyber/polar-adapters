@@ -1,6 +1,6 @@
 {
   "name": "@spaire/express",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Spaire integration for Express",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -50,7 +50,7 @@
     "vitest": "^2.1.8"
   },
   "dependencies": {
-    "@spaire/adapter-utils": "^1.0.1",
+    "@spaire/adapter-utils": "^2.0.0",
     "@spaire/sdk": "^0.45.1"
   }
 }

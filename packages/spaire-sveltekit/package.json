@@ -1,6 +1,6 @@
 {
   "name": "@spaire/sveltekit",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Spaire integration for SvelteKit",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -49,7 +49,7 @@
     "vite-plugin-dts": "^3.0.0"
   },
   "dependencies": {
-    "@spaire/adapter-utils": "^1.0.1",
+    "@spaire/adapter-utils": "^2.0.0",
     "@spaire/sdk": "^0.45.1"
   }
 }
